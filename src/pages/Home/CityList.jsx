@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setPlateNumber } from "../../store/counterSlice"
 
 // data
 import cityData from "../../cityData"
@@ -11,6 +13,7 @@ import { AiOutlineSearch } from "react-icons/ai"
 function CityList() {
 
     const [searchTerm, setSearchTerm] = useState("");
+    const dispatch = useDispatch();
 
     return (
         <div>
@@ -33,7 +36,12 @@ function CityList() {
                 }).map((val) => {
 
                     return (
-                        <CityButton id={val.id} name={val.name} key={val.id}/>
+                        <button onClick={() => {
+                            dispatch(setPlateNumber(val.id))
+                        }} >
+                            <CityButton id={val.id} name={val.name} key={val.id} />
+                        </button>
+
                     )
 
                 })

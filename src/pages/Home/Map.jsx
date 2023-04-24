@@ -1,6 +1,6 @@
 import React from 'react'
 import TurkeyMap from 'turkey-map-react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setPlateNumber } from "../../store/counterSlice"
 
 
@@ -8,8 +8,6 @@ import { setPlateNumber } from "../../store/counterSlice"
 function Map() {
 
   const dispatch = useDispatch()
-  const plateNumber = useSelector((state) => state.counter.plateNumber)
-
   return (
     <div>
       <TurkeyMap
@@ -18,7 +16,6 @@ function Map() {
         showTooltip={true}
         onClick={(city) => {
           dispatch(setPlateNumber(city.plateNumber))
-          console.log(plateNumber)
         }}
       />
     </div>
