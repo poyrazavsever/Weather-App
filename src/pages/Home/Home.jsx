@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Helmet } from "react-helmet";
 
 // components
@@ -7,6 +7,7 @@ import Map from './Map';
 
 function Home() {
 
+    const [selectList, setSelectList] = useState(1)
     
     return (
         <div className='max-w-screen-lg mx-auto'>
@@ -19,11 +20,16 @@ function Home() {
                 <h1 className='text-3xl sm:text-5xl md:text-7xl text-white font-bold text-center my-16'>Türkiye Hava Durumu</h1>
             </div>
 
-            <div className='hidden'>
+            <button onClick={() => selectList === 1 ? setSelectList(2) : setSelectList(1)}
+            className='text-indigo-200 text-center flex justify-center items-center border border-indigo-200 px-6 py-2'>
+                {selectList === 1 ? "Haritaya Geç" : "Şehir Listesine Geç"}
+            </button>
+
+            <div className={selectList === 2 ? "hidden" : "visible"}>
                 <CityList />
             </div>
 
-            <div>
+            <div className={selectList === 1 ? "hidden" : "visible"}>
                 <Map />
             </div>
 
