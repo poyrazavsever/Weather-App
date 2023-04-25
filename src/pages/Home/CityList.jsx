@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setPlateNumber } from "../../store/counterSlice"
+import { NavLink } from "react-router-dom";
 
 // data
 import cityData from "../../cityData"
@@ -36,11 +37,11 @@ function CityList() {
                 }).map((val) => {
 
                     return (
-                        <button onClick={() => {
+                        <NavLink to={`/cities/${val.id}`} key={val.id} onClick={() => {
                             dispatch(setPlateNumber(val.id))
                         }} >
-                            <CityButton id={val.id} name={val.name} key={val.id} />
-                        </button>
+                            <CityButton id={val.id} name={val.name} />
+                        </NavLink>
 
                     )
 
